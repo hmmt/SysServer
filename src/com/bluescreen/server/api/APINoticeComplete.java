@@ -55,7 +55,7 @@ public class APINoticeComplete implements APIBase  {
 			sb.append("-습도").append("\n");
 			sb.append("  최대 : ").append(String.format("%.1f", max_humidity)).append("\n");
 			sb.append("  최소 : ").append(String.format("%.1f", min_humidity)).append("\n");
-			sb.append("  평균 : ").append(String.format("%.1f", mean_temp)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1f", mean_humidity)).append("\n");
 			sb.append("=====================================").append("\n");
 			
 			return sb.toString();
