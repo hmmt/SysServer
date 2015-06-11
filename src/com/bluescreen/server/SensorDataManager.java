@@ -60,13 +60,13 @@ public class SensorDataManager {
             try {
                     Statement st = con.createStatement();
                     
+                    System.out.println("SELECT illumination, temp, humidity FROM SensingData"
+                            + " WHERE user_id="+user_id+" AND created_at > TIMESTAMPADD(MINUTE, -"+duration+", NOW())"
+                            + "  ORDER BY created_at DESC LIMIT 300");
 
                     ResultSet rs = st.executeQuery("SELECT illumination, temp, humidity FROM SensingData"
                                     + " WHERE user_id="+user_id+" AND created_at > TIMESTAMPADD(MINUTE, -"+duration+", NOW())"
                                     + "  ORDER BY created_at DESC LIMIT 300");
-
-//                    rs = st.executeQuery("SELECT illumination, temp, humidity FROM SensingData"
-//                                    + " WHERE user_id="+user_id+" ORDER BY id DESC LIMIT 200");
 
                     ArrayList<SensingData> list = new ArrayList<SensingData>();
                     while(rs.next())
