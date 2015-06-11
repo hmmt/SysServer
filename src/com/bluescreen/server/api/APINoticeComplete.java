@@ -41,19 +41,19 @@ public class APINoticeComplete implements APIBase  {
 			sb.append("=====================================").append("\n");
 			
 			sb.append("-조도").append("\n");
-			sb.append("  최대 : ").append(String.format("%.1lf", max_illumination)).append("\n");
-			sb.append("  최소 : ").append(String.format("%.1lf", min_illumination)).append("\n");
-			sb.append("  평균 : ").append(String.format("%.1lf", mean_illumination)).append("\n");
+			sb.append("  최대 : ").append(String.format("%.1f", max_illumination)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1f", min_illumination)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1f", mean_illumination)).append("\n\n");
 			
 			sb.append("-온도").append("\n");
-			sb.append("  최대 : ").append(String.format("%.1lf", max_temp)).append("\n");
-			sb.append("  최소 : ").append(String.format("%.1lf", min_temp)).append("\n");
-			sb.append("  평균 : ").append(String.format("%.1lf", mean_temp)).append("\n");
+			sb.append("  최대 : ").append(String.format("%.1f", max_temp)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1f", min_temp)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1f", mean_temp)).append("\n\n");
 			
 			sb.append("-습도").append("\n");
-			sb.append("  최대 : ").append(String.format("%.1lf", max_humidity)).append("\n");
-			sb.append("  최소 : ").append(String.format("%.1lf", min_humidity)).append("\n");
-			sb.append("  평균 : ").append(String.format("%.1lf", mean_temp)).append("\n");
+			sb.append("  최대 : ").append(String.format("%.1f", max_humidity)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1f", min_humidity)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1f", mean_temp)).append("\n");
 			sb.append("=====================================").append("\n");
 			
 			return sb.toString();
