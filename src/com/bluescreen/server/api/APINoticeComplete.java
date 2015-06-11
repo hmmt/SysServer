@@ -94,7 +94,7 @@ public class APINoticeComplete implements APIBase  {
         for (SensingData sensingData : sampleData.samples)
         {
         	if(Math.abs(sensingData.illumination) > 1000 ||
-        			Math.abs(sensingData.temp) > 80  ||
+        			Math.abs(sensingData.temp) > 41  ||
         			Math.abs(sensingData.humidity) > 1000 ||
         			sensingData.humidity == 0 || 
         			sensingData.illumination == 0 ||
