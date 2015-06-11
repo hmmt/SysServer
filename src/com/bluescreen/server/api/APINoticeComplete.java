@@ -28,9 +28,11 @@ public class APINoticeComplete implements APIBase  {
 		public double min_humidity;
 		public double mean_humidity;
 		
+		public int count = 0;
+		
 		public String convertToString()
 		{
-			if(samples == null || samples.size() == 0)
+			if(samples == null || count == 0)
 			{
 				return "no sample data...";
 			}
@@ -87,8 +89,21 @@ public class APINoticeComplete implements APIBase  {
         sampleData.min_temp = Double.MAX_VALUE;
         sampleData.min_humidity = Double.MAX_VALUE;
         
+        
+        sampleData.count = 0;
         for (SensingData sensingData : sampleData.samples)
         {
+        	if(Math.abs(sensingData.illumination) > 1000 ||
+        			Math.abs(sensingData.temp) > 1000  ||
+        			Math.abs(sensingData.humidity) > 1000 ||
+        			sensingData.humidity == 0 || 
+        			sensingData.illumination == 0 ||
+        			sensingData.temp == 0 &&((sampleData.min_temp > 10 || sampleData.max_temp < -10) )
+        			)
+        	{
+        		continue;
+        	}
+        	
 			total_illumination += sensingData.illumination;
 			if(sampleData.max_illumination < sensingData.illumination)
 				sampleData.max_illumination = sensingData.illumination;
@@ -106,6 +121,8 @@ public class APINoticeComplete implements APIBase  {
 				sampleData.max_humidity = sensingData.humidity;
 			if(sampleData.min_humidity > sensingData.humidity)
 				sampleData.min_humidity = sensingData.humidity;
+			
+			sampleData.count++;
 		}
         
         sampleData.mean_illumination = total_illumination / count;
