@@ -18,10 +18,12 @@ public class APIGetWeatherById implements APIBase {
 		ArrayList<Weather> weatherList;
 		if("1".equals(areaId))
 		{
+			// 인천
 			weatherList = wt.getWeather("61", "120");
 		}
 		else if("2".equals(areaId))
 		{
+			 // 서울?
 			weatherList = wt.getWeather("58", "125");
 		}
 		/*else if("3".equals(areaId))
@@ -30,7 +32,8 @@ public class APIGetWeatherById implements APIBase {
 		}*/
 		else if("4".equals(areaId))
 		{
-			weatherList = wt.getWeather("63", "124");
+			// 강릉
+			weatherList = wt.getWeather("91","134");
 		}
 		else if("5".equals(areaId))
 		{
@@ -40,9 +43,11 @@ public class APIGetWeatherById implements APIBase {
 		{
 			weatherList = wt.getWeather("58", "114");
 		}
-		else if("3".equals(areaId)) // 제주
+		else if("3".equals(areaId)) // 
 		{
-			weatherList = wt.getWeather("48", "36");
+			// 부산 97 74
+			weatherList = wt.getWeather("97", "74");
+			//weatherList = wt.getWeather("48", "36");
 		}
 		else
 		{
