@@ -1,4 +1,4 @@
-package com.bluescreen.server.api;
+com.bluescreen.server.api;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,8 +15,17 @@ public class APINoticeComplete implements APIBase  {
 	class SampleData
 	{
 		public ArrayList<SensingData> samples;
+		
+		public double max_illumination;
+		public double min_illumination;
 		public double mean_illumination;
+		
+		public double max_temp;
+		public double min_temp;
 		public double mean_temp;
+		
+		public double max_humidity;
+		public double min_humidity;
 		public double mean_humidity;
 		
 		public String convertToString()
@@ -30,9 +39,21 @@ public class APINoticeComplete implements APIBase  {
 			sb.append("=====================================").append("\n");
 			sb.append("       건조 환경 정보").append("\n");
 			sb.append("=====================================").append("\n");
-			sb.append("조도 : "+Math.floor(mean_illumination*10)/10).append("\n");
-			sb.append("온도 : "+Math.floor(mean_temp*10)/10).append("\n");
-			sb.append("습도 : "+Math.floor(mean_humidity*10)/10).append("\n");
+			
+			sb.append("-조도").append("\n");
+			sb.append("  최대 : ").append(String.format("%.1f", max_illumination)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1f", min_illumination)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1f", mean_illumination)).append("\n");
+			
+			sb.append("-온도").append("\n");
+			sb.append("  최대 : ").append(String.format("%.1f", max_temp)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1f", min_temp)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1f", mean_temp)).append("\n");
+			
+			sb.append("-습도").append("\n");
+			sb.append("  최대 : ").append(String.format("%.1f", max_humidity)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1f", min_humidity)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1f", mean_humidity)).append("\n");
 			sb.append("=====================================").append("\n");
 			
 			return sb.toString();
