@@ -41,19 +41,19 @@ public class APINoticeComplete implements APIBase  {
 			sb.append("=====================================").append("\n");
 			
 			sb.append("-조도").append("\n");
-			sb.append("  최대 : ").append(String.format("%.1f", max_illumination)).append("\n");
-			sb.append("  최소 : ").append(String.format("%.1f", min_illumination)).append("\n");
-			sb.append("  평균 : ").append(String.format("%.1f", mean_illumination)).append("\n");
+			sb.append("  최대 : ").append(String.format("%.1lf", max_illumination)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1lf", min_illumination)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1lf", mean_illumination)).append("\n");
 			
 			sb.append("-온도").append("\n");
-			sb.append("  최대 : ").append(String.format("%.1f", max_temp)).append("\n");
-			sb.append("  최소 : ").append(String.format("%.1f", min_temp)).append("\n");
-			sb.append("  평균 : ").append(String.format("%.1f", mean_temp)).append("\n");
+			sb.append("  최대 : ").append(String.format("%.1lf", max_temp)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1lf", min_temp)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1lf", mean_temp)).append("\n");
 			
 			sb.append("-습도").append("\n");
-			sb.append("  최대 : ").append(String.format("%.1f", max_humidity)).append("\n");
-			sb.append("  최소 : ").append(String.format("%.1f", min_humidity)).append("\n");
-			sb.append("  평균 : ").append(String.format("%.1f", mean_temp)).append("\n");
+			sb.append("  최대 : ").append(String.format("%.1lf", max_humidity)).append("\n");
+			sb.append("  최소 : ").append(String.format("%.1lf", min_humidity)).append("\n");
+			sb.append("  평균 : ").append(String.format("%.1lf", mean_temp)).append("\n");
 			sb.append("=====================================").append("\n");
 			
 			return sb.toString();
@@ -79,11 +79,33 @@ public class APINoticeComplete implements APIBase  {
         	return sampleData;
         }
         
+        sampleData.max_illumination = Double.MIN_VALUE;
+        sampleData.max_temp = Double.MIN_VALUE;
+        sampleData.max_humidity = Double.MIN_VALUE;
+        
+        sampleData.min_illumination = Double.MAX_VALUE;
+        sampleData.min_temp = Double.MAX_VALUE;
+        sampleData.min_humidity = Double.MAX_VALUE;
+        
         for (SensingData sensingData : sampleData.samples)
         {
 			total_illumination += sensingData.illumination;
+			if(sampleData.max_illumination < sensingData.illumination)
+				sampleData.max_illumination = sensingData.illumination;
+			if(sampleData.min_illumination > sensingData.illumination)
+				sampleData.min_illumination = sensingData.illumination;
+			
 			total_temp += sensingData.temp;
+			if(sampleData.max_temp < sensingData.temp)
+				sampleData.max_temp = sensingData.temp;
+			if(sampleData.min_temp > sensingData.temp)
+				sampleData.min_temp = sensingData.temp;
+			
 			total_humidity += sensingData.humidity;
+			if(sampleData.max_humidity < sensingData.humidity)
+				sampleData.max_humidity = sensingData.humidity;
+			if(sampleData.min_humidity > sensingData.humidity)
+				sampleData.min_humidity = sensingData.humidity;
 		}
         
         sampleData.mean_illumination = total_illumination / count;
