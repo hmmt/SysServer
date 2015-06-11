@@ -118,9 +118,10 @@ public class APINoticeComplete implements APIBase  {
 	@Override
 	public JSONObject process(JSONObject request) {
 		String id = request.getString("id");
+		int duration_sec = Integer.parseInt(request.getString("duration"));
 		
 		try {
-			SampleData sampleData = getStatistics(id, 180);
+			SampleData sampleData = getStatistics(id, duration_sec/60);
 			HttpSender.sendEmailById(id, "건조 알림","건조 알림입니다.\n"
 					+ sampleData.convertToString());
 			
