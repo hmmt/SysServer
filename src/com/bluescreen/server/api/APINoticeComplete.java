@@ -30,9 +30,9 @@ public class APINoticeComplete implements APIBase  {
 			sb.append("=====================================").append("\n");
 			sb.append("       건조 환경 정보").append("\n");
 			sb.append("=====================================").append("\n");
-			sb.append("조도 : "+mean_illumination).append("\n");
-			sb.append("온도 : "+mean_temp).append("\n");
-			sb.append("습도 : "+mean_humidity).append("\n");
+			sb.append("조도 : "+Math.floor(mean_illumination*10)/10).append("\n");
+			sb.append("온도 : "+Math.floor(mean_temp*10)/10).append("\n");
+			sb.append("습도 : "+Math.floor(mean_humidity*10)/10).append("\n");
 			sb.append("=====================================").append("\n");
 			
 			return sb.toString();
@@ -77,7 +77,7 @@ public class APINoticeComplete implements APIBase  {
 		String id = request.getString("id");
 		
 		try {
-			SampleData sampleData = getStatistics(id, 10);
+			SampleData sampleData = getStatistics(id, 180);
 			HttpSender.sendEmailById(id, "건조 알림","건조 알림입니다.\n"
 					+ sampleData.convertToString());
 			
